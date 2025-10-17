@@ -1,0 +1,22 @@
+# Core dependencies for PDF Chatbot
+# Install with: pip install -r requirements.txt
+
+# LLM Integration
+openai>=1.12.0              # OpenAI API client
+python-dotenv>=1.0.0        # Environment variable management
+
+# PDF Processing
+pypdf>=4.0.0                # Extract text from PDFs
+pdfplumber>=0.11.0          # Alternative PDF processor (more robust)
+
+# Optional: For local LLM usage (no API needed)
+# ollama>=0.1.0             # Uncomment if you want to use local models
+
+# Optional: For building more advanced features later
+# langchain>=0.1.0          # Framework for LLM applications
+# chromadb>=0.4.0           # Vector database for RAG
+# sentence-transformers>=2.0.0  # For embeddings
+
+# Development tools
+jupyter>=1.0.0              # Interactive notebooks for learning
+ipykernel>=6.29.0           # Jupyter kernel
