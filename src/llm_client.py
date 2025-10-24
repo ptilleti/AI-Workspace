@@ -47,11 +47,16 @@ class LLMClient:
             self.client = OpenAI(api_key=self.api_key)
             
         elif provider == "ollama":
-            # For future: local model support
-            self.model = model or "llama2"
-            raise NotImplementedError(
-                "Ollama support coming soon! For now, use provider='openai'"
+            # Ollama uses OpenAI-compatible API (no API key needed!)
+            self.model = model or os.getenv("OLLAMA_MODEL", "llama3.2")
+            # Point to local Ollama server
+            self.client = OpenAI(
+                base_url="http://localhost:11434/v1",
+                api_key="ollama"  # Ollama doesn't need a real key, but API requires something
             )
+            print(f"💡 Using local Ollama server at http://localhost:11434")
+            print(f"   Make sure Ollama is running: ollama serve")
+            
         else:
             raise ValueError(f"Unknown provider: {provider}")
         
@@ -100,10 +105,12 @@ class LLMClient:
             answer = response.choices[0].message.content
             
             # Show token usage (helpful for learning about costs)
-            usage = response.usage
-            print(f"📊 Tokens used: {usage.total_tokens} "
-                  f"(prompt: {usage.prompt_tokens}, "
-                  f"completion: {usage.completion_tokens})")
+            # Note: Ollama may not always return usage stats
+            if hasattr(response, 'usage') and response.usage:
+                usage = response.usage
+                print(f"📊 Tokens used: {usage.total_tokens} "
+                      f"(prompt: {usage.prompt_tokens}, "
+                      f"completion: {usage.completion_tokens})")
             
             return answer
             
@@ -133,8 +140,11 @@ if __name__ == "__main__":
     print("LLM Client Test")
     print("-" * 50)
     
+    # Get provider from environment or default to ollama
+    provider = os.getenv("LLM_PROVIDER", "ollama")
+    
     try:
-        client = LLMClient(provider="openai")
+        client = LLMClient(provider=provider)
         
         # Simple test
         response = client.chat(
@@ -147,6 +157,12 @@ if __name__ == "__main__":
         
     except Exception as e:
         print(f"❌ Error: {e}")
-        print("\n💡 Make sure you've:")
-        print("   1. Copied .env.example to .env")
-        print("   2. Added your OPENAI_API_KEY to .env")
+        if provider == "openai":
+            print("\n💡 Make sure you've:")
+            print("   1. Copied .env.example to .env")
+            print("   2. Added your OPENAI_API_KEY to .env")
+        elif provider == "ollama":
+            print("\n💡 Make sure you've:")
+            print("   1. Installed Ollama from https://ollama.ai/")
+            print("   2. Started Ollama: ollama serve")
+            print("   3. Pulled a model: ollama pull llama3.2")
