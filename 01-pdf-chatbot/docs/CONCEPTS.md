@@ -82,6 +82,8 @@ User: "What is a variable?"
 
 ### 6. CAG vs RAG
 
+> **📝 Note on Terminology**: "CAG" isn't standard industry jargon - it's a term we use here to distinguish the simple approach (send full doc) from RAG (vector search). Industry calls this "in-context learning" or "long-context prompting," but "CAG" makes the comparison to RAG clearer!
+
 #### CAG (Context Augmented Generation)
 **What**: Send entire document as context
 

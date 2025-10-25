@@ -1,219 +1,111 @@
-# 🤖 AI Learning Workspace# AI Learning Journey - PDF Chatbot
+# 🤖 AI Learning Workspace
 
-
-
-Welcome to my AI development learning journey! This repository contains multiple small projects as I learn to build AI applications, work with LLMs, and explore AI agent concepts.## Project Overview
-
-A simple chatbot that can answer questions about a PDF document using Context Augmented Generation (CAG).
+Welcome to my AI development learning journey! This repository contains multiple small projects as I learn to build AI applications, work with LLMs, and explore AI agent concepts.
 
 ## 📚 Projects
 
-## Learning Objectives
+### [01-pdf-chatbot](./01-pdf-chatbot/) - PDF Question Answering Chatbot
+**Status**: ✅ Complete  
+**Tech**: Python, Ollama/OpenAI, PyPDF  
+**Concepts**: CAG (Context Augmented Generation), LLM interaction, Prompt engineering
 
-### [01-pdf-chatbot](./01-pdf-chatbot/) - PDF Question Answering Chatbot- Understand how to interact with LLMs
+A chatbot that answers questions about PDF documents using local AI models (Ollama) or OpenAI API. Perfect first project to learn:
+- Working with LLMs
+- PDF text extraction
+- Context-based question answering
+- Free local AI with Ollama
 
-**Status**: ✅ Complete  - Learn PDF text extraction
-
-**Tech**: Python, Ollama/OpenAI, PyPDF  - Implement context-based question answering
-
-**Concepts**: CAG (Context Augmented Generation), LLM interaction, Prompt engineering- Build foundational AI agent concepts
-
-
-
-A chatbot that answers questions about PDF documents using local AI models (Ollama) or OpenAI API. Perfect introduction to:## Project Structure
-
-- Working with LLMs```
-
-- PDF text extractionai-workspace/
-
-- Context-based question answering├── README.md              # This file
-
-- Free local AI with Ollama├── requirements.txt       # Python dependencies
-
-├── .env.example          # Example environment variables
-
-**Quick Start**:├── src/
-
-```powershell│   ├── chatbot.py        # Main chatbot logic
-
-cd 01-pdf-chatbot│   ├── pdf_processor.py  # PDF text extraction
-
-pip install -r requirements.txt│   └── llm_client.py     # LLM interaction wrapper
-
-# Follow docs/QUICKSTART.md├── data/
-
-```│   └── sample.pdf        # Place your PDF here
-
-└── notebooks/
-
----    └── tutorial.ipynb    # Interactive learning notebook
-
+**Quick Start**:
+```powershell
+cd 01-pdf-chatbot
+pip install -r requirements.txt
+# Follow docs/QUICKSTART.md
 ```
 
+---
+
 ### 02-[Your Next Project]
+Coming soon...
 
-Coming soon...## Setup Instructions
+---
 
+## 🛠️ Development Environment
 
+### Prerequisites
+- Python 3.8+
+- [Ollama](https://ollama.ai/) (for free local AI)
+- Git
 
----**🆓 Want FREE local AI?** See [OLLAMA_SETUP.md](OLLAMA_SETUP.md) for complete Ollama setup!
+### Project Organization
 
+Each project is self-contained:
+```
+project-name/
+├── README.md           # Project overview & instructions
+├── requirements.txt    # Python dependencies
+├── .env.example        # Environment variables template
+├── src/               # Source code
+│   └── __init__.py    # Python package marker
+├── data/              # Project data
+├── notebooks/         # Jupyter notebooks (if any)
+└── docs/              # Additional documentation
+```
 
+### Working with Projects
 
-## 🛠️ Development Environment### Quick Start with Ollama (Recommended for Learning)
-
-
-
-### Prerequisites1. **Install Ollama**: Download from [ollama.ai](https://ollama.ai/)
-
-- Python 3.8+2. **Download a model**: 
-
-- [Ollama](https://ollama.ai/) (for free local AI)   ```powershell
-
-- Git   ollama pull llama3.2
-
-   ```
-
-### Project Organization3. **Install Python dependencies**:
-
-   ```powershell
-
-Each project is self-contained:   pip install -r requirements.txt
-
-```   ```
-
-project-name/4. **Configure environment**:
-
-├── README.md           # Project overview & instructions   ```powershell
-
-├── requirements.txt    # Python dependencies   Copy-Item .env.example .env
-
-├── .env.example        # Environment variables template   ```
-
-├── src/               # Source code   Make sure `.env` has: `LLM_PROVIDER=ollama`
-
-│   └── __init__.py    # Python package marker5. **Verify setup**:
-
-├── data/              # Project data   ```powershell
-
-├── notebooks/         # Jupyter notebooks (if any)   .\check-ollama.ps1
-
-└── docs/              # Additional documentation   ```
-
-```6. **Add a PDF** to the `data/` folder
-
-7. **Run the chatbot**:
-
-### Working with Projects   ```powershell
-
-   python src/chatbot.py
-
-```powershell   ```
-
+```powershell
 # Navigate to a project
+cd 01-pdf-chatbot
 
-cd 01-pdf-chatbot### Alternative: OpenAI API Setup
-
-
-
-# Create virtual environment (recommended)If you prefer using OpenAI (requires API key and costs money):
-
+# Create virtual environment (recommended)
 python -m venv venv
+.\venv\Scripts\Activate.ps1
 
-.\venv\Scripts\Activate.ps11. **Install Python Dependencies**
+# Install dependencies
+pip install -r requirements.txt
 
-   ```powershell
+# Run the project
+python src/chatbot.py
+```
 
-# Install dependencies   pip install -r requirements.txt
+## 🎯 Learning Path
 
-pip install -r requirements.txt   ```
-
-
-
-# Run the project2. **Get API Key**: Visit [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-
-python src/main_script.py
-
-```3. **Configure Environment Variables**
-
-   ```powershell
-
-## 🎯 Learning Path   Copy-Item .env.example .env
-
-   ```
-
-1. **PDF Chatbot (CAG)** ← You are here   Edit `.env` and set:
-
-   - Learn LLM basics   ```
-
-   - Understand context windows   LLM_PROVIDER=openai
-
-   - Practice prompt engineering   OPENAI_API_KEY=your_key_here
-
-   ```
+1. **PDF Chatbot (CAG)** ← You are here
+   - Learn LLM basics
+   - Understand context windows
+   - Practice prompt engineering
 
 2. **RAG Chatbot** (Planned)
-
-   - Vector databases (ChromaDB)4. **Add Your PDF** to the `data/` folder
-
+   - Vector databases (ChromaDB)
    - Embeddings
+   - Retrieval Augmented Generation
 
-   - Retrieval Augmented Generation5. **Run the Chatbot**
-
-   ```powershell
-
-3. **Multi-Tool AI Agent** (Planned)   python src/chatbot.py
-
-   - Function calling   ```
-
+3. **Multi-Tool AI Agent** (Planned)
+   - Function calling
    - Tool integration
+   - Agent frameworks (LangChain)
 
-   - Agent frameworks (LangChain)## Concepts Explained
-
-
-
-4. **Autonomous Agent** (Planned)### What is CAG (Context Augmented Generation)?
-
-   - Planning and reasoning- We extract all text from the PDF
-
-   - Multi-step workflows- When a user asks a question, we send the PDF text + question to the LLM
-
-   - Agent memory systems- The LLM answers based on the provided context
-
-- Simpler than RAG, works great for smaller documents
+4. **Autonomous Agent** (Planned)
+   - Planning and reasoning
+   - Multi-step workflows
+   - Agent memory systems
 
 ## 📖 General Resources
 
-### Why Python?
-
-### AI/LLM Learning- Rich ecosystem (langchain, openai, pypdf, etc.)
-
-- [Ollama Documentation](https://github.com/ollama/ollama)- Easy to learn and prototype
-
-- [OpenAI API Docs](https://platform.openai.com/docs)- Industry standard for AI/ML
-
+### AI/LLM Learning
+- [Ollama Documentation](https://github.com/ollama/ollama)
+- [OpenAI API Docs](https://platform.openai.com/docs)
 - [LangChain Documentation](https://python.langchain.com/)
+- [Prompt Engineering Guide](https://www.promptingguide.ai/)
 
-- [Prompt Engineering Guide](https://www.promptingguide.ai/)### Do I Need Docker?
-
-- **Not for starting!** Docker is for deployment/production
-
-### Python for AI- We'll run everything locally first
-
-- [Real Python](https://realpython.com/)- Docker comes later when you want to containerize your app
-
+### Python for AI
+- [Real Python](https://realpython.com/)
 - [Python Type Hints](https://docs.python.org/3/library/typing.html)
+- [Poetry for Dependency Management](https://python-poetry.org/)
 
-- [Poetry for Dependency Management](https://python-poetry.org/)## Next Steps
-
-1. Start with the Jupyter notebook tutorial
-
-### Communities2. Run the basic chatbot
-
-- r/LocalLLaMA - Local models3. Experiment with different questions
-
-- r/LangChain - LangChain framework4. Learn about improvements (RAG, vector databases, etc.)
-
+### Communities
+- r/LocalLLaMA - Local models
+- r/LangChain - LangChain framework
 - r/MachineLearning - ML/AI general
 
 ## 🔧 Shared Tools & Utilities
