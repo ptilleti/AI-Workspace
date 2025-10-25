@@ -1,64 +1,87 @@
 # 🚀 Quick Start Guide
 
-Get your PDF chatbot running in 5 minutes!
+Get your PDF chatbot running in 5 minutes with **FREE local AI!**
 
-## Step 1: Install Python Dependencies
+## Step 1: Choose Your Path
 
-Open a terminal in this directory and run:
+### 🆓 Path A: Ollama (Recommended - Free & Private!)
 
-```bash
+**Best for**: Learning, experimenting, privacy-focused projects
+
+#### 1. Install Ollama
+- Visit [ollama.ai](https://ollama.ai/) and download for Windows
+- Install and it will run automatically
+
+#### 2. Download a Model
+Open PowerShell:
+```powershell
+ollama pull llama3.2
+```
+This downloads a 2GB model (one-time download).
+
+#### 3. Install Python Dependencies
+```powershell
 pip install -r requirements.txt
 ```
 
-This installs:
-- `openai` - To interact with OpenAI's GPT models
-- `pypdf` - To extract text from PDFs
-- `python-dotenv` - To manage API keys securely
-- `jupyter` - For interactive learning notebooks
+#### 4. Configure Environment
+```powershell
+Copy-Item .env.example .env
+```
+Your `.env` is already set to use Ollama by default! No API key needed.
 
-## Step 2: Set Up Your API Key
-
-### Option A: Use OpenAI (Recommended for beginners)
-
-1. **Get an API key**: Visit [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-2. **Create API key**: Click "Create new secret key"
-3. **Copy the key**: It looks like `sk-...`
-
-### Option B: Use Local Models (Free, but more setup)
-
-Install [Ollama](https://ollama.ai/) to run models locally (no API key needed!)
-
-## Step 3: Configure Environment
-
-Copy the example environment file:
-
-```bash
-cp .env.example .env
+#### 5. Verify Setup
+```powershell
+.\check-ollama.ps1
 ```
 
-Edit `.env` and add your OpenAI API key:
+✅ **Done!** Skip to "Add a PDF" below.
 
+---
+
+### 💳 Path B: OpenAI API (Paid, but Excellent Quality)
+
+**Best for**: Production apps, need absolute best quality
+
+#### 1. Get API Key
+- Visit [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- Create new secret key (looks like `sk-...`)
+- New accounts get $5 free credit
+
+#### 2. Install Python Dependencies
+```powershell
+pip install -r requirements.txt
 ```
+
+#### 3. Configure Environment
+```powershell
+Copy-Item .env.example .env
+```
+Edit `.env` and change:
+```env
+LLM_PROVIDER=openai
 OPENAI_API_KEY=sk-your-actual-key-here
 ```
 
-## Step 4: Add a PDF
+---
+
+## Step 2: Add a PDF
 
 Place any PDF file in the `data/` folder. For example:
-- A book (from Project Gutenberg)
-- A research paper
+- A book (from [Project Gutenberg](https://www.gutenberg.org/))
+- A research paper from [arXiv](https://arxiv.org/)
 - Technical documentation
-- Any text-based PDF you want to chat with
+- Any text-based PDF (not scanned images)
 
-See `data/README.md` for free PDF sources.
+See `data/README.md` for more free PDF sources.
 
-## Step 5: Run the Chatbot!
+## Step 3: Run the Chatbot!
 
-```bash
+```powershell
 python src/chatbot.py
 ```
 
-That's it! Start asking questions about your PDF.
+That's it! Start asking questions about your PDF. 🎉
 
 ---
 
@@ -67,14 +90,15 @@ That's it! Start asking questions about your PDF.
 ### Beginner: Interactive Tutorial
 Open the Jupyter notebook for hands-on learning:
 
-```bash
+```powershell
 jupyter notebook notebooks/tutorial.ipynb
 ```
 
 This walks you through:
-- How LLMs work
+- How LLMs work (with Ollama!)
 - PDF processing
 - Building the chatbot step-by-step
+- Testing different models
 
 ### Intermediate: Explore the Code
 
@@ -89,43 +113,75 @@ Each file is heavily commented for learning.
 ### Advanced: Extend the Project
 
 Ideas to try:
+- Try different Ollama models (qwen2.5:7b, phi3, etc.)
 - Add conversation memory
 - Support multiple PDFs
-- Build a web UI
-- Implement RAG with vector databases
-- Use local models (Ollama)
+- Build a web UI with Streamlit
+- Implement RAG with vector databases (ChromaDB)
 
 ---
 
-## 💰 Cost Considerations
+## 💰 Cost Comparison
 
-Using OpenAI API:
-- **gpt-4o-mini**: ~$0.15 per 1M input tokens (very cheap!)
-- A typical chat might use 1,000-5,000 tokens
-- **Estimate**: $0.001-0.005 per conversation
+### Using Ollama (Recommended):
+- **Cost**: $0.00 forever! 🎉
+- **Privacy**: 100% local, data never leaves your PC
+- **Internet**: Not needed after model download
+- **Quality**: Excellent (llama3.2, qwen2.5, phi3)
+- **Speed**: Depends on your hardware (usually fast)
 
-For free usage:
-- Use Ollama with local models (no API costs)
-- Use free tier credits from OpenAI ($5 free for new accounts)
+### Using OpenAI API:
+- **Cost**: ~$0.001-0.005 per conversation (very cheap)
+- **Quality**: Best available (GPT-4o)
+- **Speed**: Usually very fast
+- **Free tier**: $5 credit for new accounts
 
 ---
 
 ## 🐛 Troubleshooting
 
-### "No module named 'openai'"
-Run: `pip install -r requirements.txt`
+### Ollama Issues
 
-### "API key not found"
-Make sure `.env` file exists and contains `OPENAI_API_KEY=...`
+**"Cannot connect to Ollama"**
+```powershell
+# Check if Ollama is running
+Test-NetConnection localhost -Port 11434
 
-### "No PDF files found"
-Add a PDF to the `data/` folder
+# If not running, start Ollama from the Start menu
+```
 
-### Import errors in VS Code
-The packages need to be installed. The red squiggles will go away after running:
-```bash
+**"Model not found"**
+```powershell
+# Download the model first
+ollama pull llama3.2
+```
+
+**Slow responses?**
+```powershell
+# Try a smaller/faster model
+ollama pull llama3.2:1b
+```
+
+### General Issues
+
+**"No module named 'openai'"**
+```powershell
 pip install -r requirements.txt
 ```
+
+**"No PDF files found"**
+Add a PDF to the `data/` folder
+
+**Import errors in VS Code**
+The red squiggles will disappear after installing packages:
+```powershell
+pip install -r requirements.txt
+```
+
+### OpenAI API Issues (if using OpenAI)
+
+**"API key not found"**
+Make sure `.env` has: `LLM_PROVIDER=openai` and `OPENAI_API_KEY=sk-...`
 
 ---
 
