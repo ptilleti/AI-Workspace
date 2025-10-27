@@ -87,6 +87,12 @@ User: "What is a variable?"
 #### CAG (Context Augmented Generation)
 **What**: Send entire document as context
 
+**How it works in this project**:
+1. Extract full text from PDF
+2. Truncate to ~30,000 chars if needed (fits in context window)
+3. Include document in user message with clear delimiters
+4. LLM answers based on provided context
+
 **Pros**:
 - Simple to implement
 - Works great for small-medium documents
@@ -95,8 +101,9 @@ User: "What is a variable?"
 **Cons**:
 - Limited by context window
 - More expensive (more tokens)
+- May need truncation for large PDFs
 
-**Best for**: Single book, article, manual
+**Best for**: Single book, article, manual (under ~100 pages)
 
 #### RAG (Retrieval Augmented Generation)
 **What**: Search for relevant chunks, send only those

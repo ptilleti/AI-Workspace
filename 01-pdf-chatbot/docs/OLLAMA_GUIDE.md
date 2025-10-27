@@ -171,11 +171,14 @@ response = client.chat.completions.create(
 
 ### Context Windows
 
+Different models have different context limits:
 - Llama 3.2: 128K tokens (~96K words)
 - Llama 3.1: 128K tokens
 - Phi-3: 128K tokens
 
 This determines how much PDF content can be processed at once.
+
+**In this project**: The chatbot automatically limits context to ~30,000 characters (~7,500 tokens) to ensure reliable performance and leave room for the system message, question, and response. For larger documents, consider implementing RAG (Retrieval Augmented Generation).
 
 ---
 

@@ -98,6 +98,12 @@ If you prefer using OpenAI (requires API key and costs money):
 - When a user asks a question, we send the PDF text + question to the LLM
 - The LLM answers based on the provided context
 - Simpler than RAG, works great for smaller documents
+- **Note**: The chatbot automatically truncates PDFs larger than ~30,000 characters to fit within the model's context window
+
+### Technical Implementation
+- Context is included in the **user message** with clear delimiters (`---BEGIN DOCUMENT---`)
+- This ensures the LLM properly recognizes and uses the document content
+- Maximum response length: 2,000 tokens for detailed answers
 
 ### Why Python?
 - Rich ecosystem (langchain, openai, pypdf, etc.)
@@ -110,7 +116,10 @@ If you prefer using OpenAI (requires API key and costs money):
 - Docker comes later when you want to containerize your app
 
 ## Next Steps
-1. Start with the Jupyter notebook tutorial
-2. Run the basic chatbot
+1. Start with the Jupyter notebook tutorial (`notebooks/tutorial.ipynb`)
+2. Run the basic chatbot with `python src/chatbot.py`
 3. Experiment with different questions
-4. Learn about improvements (RAG, vector databases, etc.)
+4. Try different Ollama models (see `docs/OLLAMA_GUIDE.md`)
+5. Learn about improvements (RAG, vector databases, etc.)
+
+**Note**: The tutorial notebook contains simplified example code for learning. The actual implementation in `src/` uses the optimized approach described above.
