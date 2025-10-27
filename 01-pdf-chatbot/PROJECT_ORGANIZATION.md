@@ -33,8 +33,7 @@ ai-workspace/                    # Git repo root
     ├── notebooks/              # Jupyter notebooks
     └── docs/                   # Documentation
         ├── QUICKSTART.md
-        ├── OLLAMA_SETUP.md
-        ├── OLLAMA_QUICKREF.md
+        ├── OLLAMA_GUIDE.md
         └── CONCEPTS.md
 ```
 
@@ -124,8 +123,7 @@ deactivate
 
 All project-specific docs are now in `docs/`:
 - **Quick start**: `docs/QUICKSTART.md`
-- **Ollama setup**: `docs/OLLAMA_SETUP.md`
-- **Quick reference**: `docs/OLLAMA_QUICKREF.md`
+- **Ollama guide**: `docs/OLLAMA_GUIDE.md`
 - **AI concepts**: `docs/CONCEPTS.md`
 
 ## Next Steps
@@ -133,7 +131,7 @@ All project-specific docs are now in `docs/`:
 1. ✅ Structure is ready
 2. 📦 Install dependencies: `pip install -r requirements.txt`
 3. ⚙️ Configure `.env`: `Copy-Item .env.example .env`
-4. 🦙 Setup Ollama: Follow `docs/OLLAMA_SETUP.md`
+4. 🦙 Setup Ollama: Follow `docs/OLLAMA_GUIDE.md`
 5. 🚀 Run chatbot: `python src/chatbot.py`
 
 ---

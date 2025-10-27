@@ -33,8 +33,7 @@ ai-workspace/
     │   └── tutorial.ipynb
     └── docs/                          # Documentation (NEW)
         ├── QUICKSTART.md
-        ├── OLLAMA_SETUP.md
-        ├── OLLAMA_QUICKREF.md
+        ├── OLLAMA_GUIDE.md
         └── CONCEPTS.md
 ```
 
@@ -85,8 +84,7 @@ New-Item .env.example
 All project-specific documentation is now in `01-pdf-chatbot/docs/`:
 
 - **Quick Start Guide**: `docs/QUICKSTART.md` - Get running in 5 minutes
-- **Ollama Setup**: `docs/OLLAMA_SETUP.md` - Complete local AI setup
-- **Quick Reference**: `docs/OLLAMA_QUICKREF.md` - Essential commands
+- **Ollama Guide**: `docs/OLLAMA_GUIDE.md` - Complete local AI setup
 - **AI Concepts**: `docs/CONCEPTS.md` - Learn AI/LLM fundamentals
 
 ## 🎯 Benefits of This Structure
@@ -155,7 +153,7 @@ python -c "from src.pdf_processor import PDFProcessor; print('✅ Imports work!'
 1. **✅ Structure complete** - Your project is organized!
 2. **📦 Install dependencies**: `cd 01-pdf-chatbot && pip install -r requirements.txt`
 3. **⚙️ Configure environment**: `Copy-Item .env.example .env`
-4. **🦙 Set up Ollama**: Follow `docs/OLLAMA_SETUP.md`
+4. **🦙 Set up Ollama**: Follow `docs/OLLAMA_GUIDE.md`
 5. **🚀 Run your chatbot**: `python src/chatbot.py`
 6. **📓 Learn**: Open `notebooks/tutorial.ipynb` in Jupyter
 

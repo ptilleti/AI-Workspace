@@ -79,18 +79,38 @@ class LLMClient:
         Returns:
             str: The LLM's response
         """
-        # Build the messages array
+        # Build messages with context (this is the CAG part!)
         messages = [
             {"role": "system", "content": system_message}
         ]
         
-        # Add context if provided (this is the CAG part!)
+        # Add context in the USER message for better clarity
         if context:
-            context_msg = f"Context information:\n\n{context}\n\n"
-            messages.append({"role": "system", "content": context_msg})
-        
-        # Add user's question
-        messages.append({"role": "user", "content": user_message})
+            # Truncate context if too large (rough limit: 7500 tokens = ~30000 chars)
+            # This leaves room for the system message, question, and response
+            max_context_chars = 30000
+            truncated = False
+            
+            if len(context) > max_context_chars:
+                context = context[:max_context_chars]
+                truncated = True
+            
+            print(f"📝 Context provided: {len(context)} characters" + 
+                  (" (truncated)" if truncated else ""))
+            
+            # Put context BEFORE the question in the user message
+            full_user_message = f"""Here is the document content to reference:
+
+---BEGIN DOCUMENT---
+{context}
+---END DOCUMENT---
+
+Based on the document above, please answer this question:
+{user_message}"""
+            messages.append({"role": "user", "content": full_user_message})
+        else:
+            print("⚠️  No context provided!")
+            messages.append({"role": "user", "content": user_message})
         
         # Call the LLM
         try:
@@ -99,7 +119,7 @@ class LLMClient:
                 model=self.model,
                 messages=messages,
                 temperature=self.temperature,
-                max_tokens=1000  # Adjust based on your needs
+                max_tokens=2000  # Increased for better responses
             )
             
             answer = response.choices[0].message.content

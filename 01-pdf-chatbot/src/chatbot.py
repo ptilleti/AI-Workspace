@@ -36,6 +36,13 @@ class PDFChatbot:
         self.pdf_processor = PDFProcessor(pdf_path)
         self.pdf_content = self.pdf_processor.extract_text()
         
+        # Debug: Check if we actually got content
+        if self.pdf_content:
+            print(f"✅ PDF content loaded: {len(self.pdf_content)} characters")
+            print(f"   Preview: {self.pdf_content[:100]}...")
+        else:
+            print("⚠️  WARNING: PDF content is empty!")
+        
         print()
         
         # Initialize LLM client
@@ -62,6 +69,9 @@ class PDFChatbot:
             "provided document. Use only information from the document to answer. "
             "If the answer is not in the document, say so clearly."
         )
+        
+        # Debug: Check what we're sending
+        print(f"\n🔍 DEBUG: Sending {len(self.pdf_content) if self.pdf_content else 0} chars of context")
         
         # This is where CAG happens! We pass the PDF content as context
         answer = self.llm.chat(

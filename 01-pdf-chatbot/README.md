@@ -27,14 +27,13 @@ A simple chatbot that can answer questions about a PDF document using Context Au
 │   └── tutorial.ipynb    # Interactive learning notebook
 └── docs/
     ├── QUICKSTART.md     # 5-minute setup guide
-    ├── OLLAMA_SETUP.md   # Complete Ollama setup
-    ├── OLLAMA_QUICKREF.md # Quick reference
+    ├── OLLAMA_GUIDE.md   # Complete Ollama guide
     └── CONCEPTS.md       # AI concepts explained
 ```
 
 ## Setup Instructions
 
-**🆓 Want FREE local AI?** See [docs/OLLAMA_SETUP.md](docs/OLLAMA_SETUP.md) for complete Ollama setup!
+**🆓 Want FREE local AI?** See [docs/OLLAMA_GUIDE.md](docs/OLLAMA_GUIDE.md) for complete setup!
 
 **⚡ Quick setup?** See [docs/QUICKSTART.md](docs/QUICKSTART.md) for 5-minute guide!
 

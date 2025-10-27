@@ -2,6 +2,8 @@
 
 Get your PDF chatbot running in 5 minutes with **FREE local AI!**
 
+For detailed Ollama information, see [OLLAMA_GUIDE.md](OLLAMA_GUIDE.md).
+
 ## Step 1: Choose Your Path
 
 ### 🆓 Path A: Ollama (Recommended - Free & Private!)
