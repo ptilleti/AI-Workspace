@@ -1,4 +1,6 @@
 # https://docs.ollama.com/quickstart#python
+# https://github.com/ollama/ollama-python
+# https://github.com/ollama/ollama/blob/main/docs/api.md
 
 from ollama import chat
 from ollama import ChatResponse
