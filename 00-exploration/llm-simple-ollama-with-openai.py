@@ -10,12 +10,13 @@ client = OpenAI(
 response = client.chat.completions.create(
 	model = "llama3.2",
 	messages = [
-		{"role": "system", "content": "You are a helpful teacher."},
-		{"role": "user", "content": "Explain what an AI agent is in simple terms."},
-		{"role": "assistant", "content": "Keep the response concise and easy to understand."}
+		{"role": "system", "content": "You are a helpful teacher. Keep the response concise and easy to understand."},
+		{"role": "user", "content": "Explain what an AI agent is in simple terms."}
+		# {"role": "assistant", "content": "something. this is used to provide example outputs or previous output for context."}
 	],
 	temperature = 0.7,
-	max_tokens = 2000
+	max_tokens = 2000,
+	# response_format = {"type": "json_object"},
 )
 
 # print("------------------")
@@ -28,4 +29,6 @@ response = client.chat.completions.create(
 # print(response.choices[0].message)
 print("------------------")
 print(response.choices[0].message.content)
+print("------------------")
+print(response.usage)
 print("------------------")
